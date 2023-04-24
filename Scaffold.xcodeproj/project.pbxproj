@@ -11,8 +11,8 @@
 		63E60BE329F62489000CB017 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BE229F62489000CB017 /* ContentView.swift */; };
 		63E60BE529F62489000CB017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E60BE429F62489000CB017 /* Assets.xcassets */; };
 		63E60BF229F62489000CB017 /* ScaffoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BF129F62489000CB017 /* ScaffoldTests.swift */; };
-		63E60BFC29F62489000CB017 /* ScaffoldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BFB29F62489000CB017 /* ScaffoldUITests.swift */; };
-		63E60BFE29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BFD29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift */; };
+		63E60C0D29F62967000CB017 /* AppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60C0C29F62967000CB017 /* AppLauncher.swift */; };
+		63E60C0F29F62994000CB017 /* TestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60C0E29F62994000CB017 /* TestApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,8 @@
 		63E60BED29F62489000CB017 /* ScaffoldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E60BF129F62489000CB017 /* ScaffoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldTests.swift; sourceTree = "<group>"; };
 		63E60BF729F62489000CB017 /* ScaffoldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		63E60BFB29F62489000CB017 /* ScaffoldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldUITests.swift; sourceTree = "<group>"; };
-		63E60BFD29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		63E60C0C29F62967000CB017 /* AppLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLauncher.swift; sourceTree = "<group>"; };
+		63E60C0E29F62994000CB017 /* TestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,6 @@
 			children = (
 				63E60BDF29F62489000CB017 /* Scaffold */,
 				63E60BF029F62489000CB017 /* ScaffoldTests */,
-				63E60BFA29F62489000CB017 /* ScaffoldUITests */,
 				63E60BDE29F62489000CB017 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				63E60BE029F62489000CB017 /* ScaffoldApp.swift */,
+				63E60C0E29F62994000CB017 /* TestApp.swift */,
+				63E60C0C29F62967000CB017 /* AppLauncher.swift */,
 				63E60BE229F62489000CB017 /* ContentView.swift */,
 				63E60BE429F62489000CB017 /* Assets.xcassets */,
 			);
@@ -105,15 +106,6 @@
 				63E60BF129F62489000CB017 /* ScaffoldTests.swift */,
 			);
 			path = ScaffoldTests;
-			sourceTree = "<group>";
-		};
-		63E60BFA29F62489000CB017 /* ScaffoldUITests */ = {
-			isa = PBXGroup;
-			children = (
-				63E60BFB29F62489000CB017 /* ScaffoldUITests.swift */,
-				63E60BFD29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift */,
-			);
-			path = ScaffoldUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +238,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E60BE329F62489000CB017 /* ContentView.swift in Sources */,
+				63E60C0F29F62994000CB017 /* TestApp.swift in Sources */,
 				63E60BE129F62489000CB017 /* ScaffoldApp.swift in Sources */,
+				63E60C0D29F62967000CB017 /* AppLauncher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,8 +256,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63E60BFE29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift in Sources */,
-				63E60BFC29F62489000CB017 /* ScaffoldUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +396,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Scaffold/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A6K9P929M9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -437,7 +429,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Scaffold/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = A6K9P929M9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
