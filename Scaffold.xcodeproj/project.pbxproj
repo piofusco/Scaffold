@@ -10,7 +10,6 @@
 		63E60BE129F62489000CB017 /* ScaffoldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BE029F62489000CB017 /* ScaffoldApp.swift */; };
 		63E60BE329F62489000CB017 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BE229F62489000CB017 /* ContentView.swift */; };
 		63E60BE529F62489000CB017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E60BE429F62489000CB017 /* Assets.xcassets */; };
-		63E60BE829F62489000CB017 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63E60BE729F62489000CB017 /* Preview Assets.xcassets */; };
 		63E60BF229F62489000CB017 /* ScaffoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BF129F62489000CB017 /* ScaffoldTests.swift */; };
 		63E60BFC29F62489000CB017 /* ScaffoldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BFB29F62489000CB017 /* ScaffoldUITests.swift */; };
 		63E60BFE29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E60BFD29F62489000CB017 /* ScaffoldUITestsLaunchTests.swift */; };
@@ -38,7 +37,6 @@
 		63E60BE029F62489000CB017 /* ScaffoldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldApp.swift; sourceTree = "<group>"; };
 		63E60BE229F62489000CB017 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63E60BE429F62489000CB017 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		63E60BE729F62489000CB017 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63E60BED29F62489000CB017 /* ScaffoldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E60BF129F62489000CB017 /* ScaffoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldTests.swift; sourceTree = "<group>"; };
 		63E60BF729F62489000CB017 /* ScaffoldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,17 +95,8 @@
 				63E60BE029F62489000CB017 /* ScaffoldApp.swift */,
 				63E60BE229F62489000CB017 /* ContentView.swift */,
 				63E60BE429F62489000CB017 /* Assets.xcassets */,
-				63E60BE629F62489000CB017 /* Preview Content */,
 			);
 			path = Scaffold;
-			sourceTree = "<group>";
-		};
-		63E60BE629F62489000CB017 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				63E60BE729F62489000CB017 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		63E60BF029F62489000CB017 /* ScaffoldTests */ = {
@@ -231,7 +220,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63E60BE829F62489000CB017 /* Preview Assets.xcassets in Resources */,
 				63E60BE529F62489000CB017 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,7 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -399,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -423,8 +411,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -432,9 +421,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.piofusco.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -452,8 +444,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,9 +454,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.piofusco.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
