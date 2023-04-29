@@ -8,4 +8,5 @@ enum NetworkError: Error {
     case badRequest
     case internalError
     case invalidJSON
+    case invalidParameters
 }

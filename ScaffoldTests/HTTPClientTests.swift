@@ -31,7 +31,7 @@ final class HTTPClientTests: XCTestCase {
         mockURLSession.nextResults = [("".data(using: .utf16)!, url200Response)]
         mockJSONDecoder.nextDecodable = GiphySearchResultImage(url: URL(string: "www.whatever.com")!)
 
-        let result: Result<GiphySearchResultImage, NetworkError> = await subject.request(
+        let result: Result<GiphySearchResultImage, Error> = await subject.request(
             url: GiphyURL.search,
             method: .get,
             [:]
@@ -49,9 +49,9 @@ final class HTTPClientTests: XCTestCase {
 
     func test_get_200_decodingFails_failure() async throws {
         mockURLSession.nextResults = [(invalidJSON, url200Response)]
-        var lastError: NetworkError?
+        var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, NetworkError> = await subject.request(
+        let result: Result<GiphySearchResultImage, Error> = await subject.request(
             url: GiphyURL.search,
             method: .get,
             [:]
@@ -70,9 +70,9 @@ final class HTTPClientTests: XCTestCase {
 
     func test_get_400_failure() async throws {
         mockURLSession.nextResults = [("some data".data(using: .utf16)!, url400Response)]
-        var lastError: NetworkError?
+        var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, NetworkError> = await subject.request(
+        let result: Result<GiphySearchResultImage, Error> = await subject.request(
             url: GiphyURL.search,
             method: .get,
             [:]
@@ -91,9 +91,9 @@ final class HTTPClientTests: XCTestCase {
 
     func test_get_500_failure() async throws {
         mockURLSession.nextResults = [("some data".data(using: .utf16)!, url500Response)]
-        var lastError: NetworkError?
+        var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, NetworkError> = await subject.request(
+        let result: Result<GiphySearchResultImage, Error> = await subject.request(
             url: GiphyURL.search,
             method: .get,
             [:]

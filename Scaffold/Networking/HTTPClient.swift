@@ -13,7 +13,7 @@ protocol HTTPClient {
         url: GiphyURL,
         method: HTTPMethod,
         _ parameters: [String: String]
-    ) async -> Result<T, NetworkError>
+    ) async -> Result<T, Error>
 }
 
 class DefaultHTTPClient: HTTPClient {
@@ -28,7 +28,7 @@ class DefaultHTTPClient: HTTPClient {
         self.decoder = decoder
     }
 
-    func request<T: Decodable>(url: GiphyURL, method: HTTPMethod, _ parameters: [String: String]) async -> Result<T, NetworkError> {
+    func request<T: Decodable>(url: GiphyURL, method: HTTPMethod, _ parameters: [String: String]) async -> Result<T, Error> {
         let urlComponents = url.buildURLComponents(parameters)
         guard let url = urlComponents.url else {
             return Result.failure(NetworkError.badRequest)
