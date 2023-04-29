@@ -4,13 +4,6 @@
 
 import Foundation
 
-enum NetworkError: Error {
-
-    case badRequest
-    case internalError
-    case invalidJSON
-}
-
 protocol HTTPClient {
     func get<T: Decodable>(url: URL) async -> Result<T, NetworkError>
 }
@@ -54,9 +47,3 @@ class DefaultHTTPClient: HTTPClient {
         return Result.success(decoded)
     }
 }
-
-protocol ScaffoldURLSession {
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: ScaffoldURLSession {}
