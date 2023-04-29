@@ -19,4 +19,11 @@ DerivedData
 *.xcuserstate
 *.xcscmblueprint
 
+*.xcodeproj
+*.pbxproj
+*.xcworkspace
+*Info.plist
+*.xcscheme
+
 .idea
+.DS_Store

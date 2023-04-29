@@ -1,0 +1,21 @@
+name: Scaffold
+options:
+  bundleIdPrefix: com.piofusco
+  deploymentTarget: "16.0"
+targets:
+  Scaffold:
+    sources:
+      - Scaffold/
+    platform: iOS
+    type: application
+    info:
+      path: Scaffold/Info.plist
+  ScaffoldTests:
+    sources:
+      - ScaffoldTests/
+    dependencies:
+      - target: Scaffold
+    platform: iOS
+    type: bundle.unit-test
+    info:
+      path: ScaffoldTests/Info.plist
