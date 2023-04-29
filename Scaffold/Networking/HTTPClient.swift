@@ -4,8 +4,16 @@
 
 import Foundation
 
+enum HTTPMethod: String {
+    case get = "GET"
+}
+
 protocol HTTPClient {
-    func get<T: Decodable>(url: URL) async -> Result<T, NetworkError>
+    func request<T: Decodable>(
+        url: GiphyURL,
+        method: HTTPMethod,
+        _ parameters: [String: String]
+    ) async -> Result<T, NetworkError>
 }
 
 class DefaultHTTPClient: HTTPClient {
@@ -20,17 +28,25 @@ class DefaultHTTPClient: HTTPClient {
         self.decoder = decoder
     }
 
-    func get<T: Decodable>(url: URL) async -> Result<T, NetworkError> {
+    func request<T: Decodable>(url: GiphyURL, method: HTTPMethod, _ parameters: [String: String]) async -> Result<T, NetworkError> {
+        let urlComponents = url.buildURLComponents(parameters)
+        guard let url = urlComponents.url else {
+            return Result.failure(NetworkError.badRequest)
+        }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+
         var decoded: T?
         do {
-            let (data, response) = try await urlSession.data(from: url, delegate: nil)
+            let (data, response) = try await urlSession.data(for: urlRequest)
 
-            guard let httpReponse = response as? HTTPURLResponse else {
+            guard let httpResponse = response as? HTTPURLResponse else {
                 throw NetworkError.internalError
             }
 
-            guard !(400...499).contains(httpReponse.statusCode)
-                && !(500...599).contains(httpReponse.statusCode) else {
+            guard !(400...499).contains(httpResponse.statusCode)
+                && !(500...599).contains(httpResponse.statusCode) else {
                 return Result.failure(NetworkError.badRequest)
             }
 

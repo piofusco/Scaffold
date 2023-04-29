@@ -5,7 +5,7 @@
 import Foundation
 
 protocol ScaffoldURLSession {
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
+    func data(for request: URLRequest) async throws -> (Data, URLResponse)
 }
 
 extension URLSession: ScaffoldURLSession {}

@@ -11,17 +11,19 @@ import XCTest
 @testable import Scaffold
 
 class MockURLSession: ScaffoldURLSession {
+    var lastURLRequests = [URLRequest]()
+    var lastHeaders: [String: String]?
 
-    var lastURLFromData = [URL]()
     var nextResults = [(Data, URLResponse)]()
 
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
-        lastURLFromData.append(url)
+    func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        lastURLRequests.append(request)
+        lastHeaders = request.allHTTPHeaderFields
 
-        guard !nextResults.isEmpty else {
-            throw NSError(domain: "MockURLSession.nextDataResults is empty", code: -1)
+        if nextResults.count > 0 {
+            return nextResults.removeFirst()
+        } else {
+            throw NSError(domain: "MockURLSession.nextData is empty", code: -1)
         }
-
-        return nextResults.removeFirst()
     }
 }
