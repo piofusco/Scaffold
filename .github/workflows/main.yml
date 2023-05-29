@@ -17,7 +17,7 @@ jobs:
         run: xcodegen generate
       - name: Run Unit Tests
         run: |
-          xcodebuild -scheme ScaffoldUnitTests -resultBundlePath TestResults test
+          xcodebuild -scheme ScaffoldTests -resultBundlePath TestResults test
       - uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
