@@ -22,11 +22,11 @@ class GiphyAPI: API {
             return Result.failure(NetworkError.invalidParameters)
         }
 
-        let parameters = [
+        let queryParameters = [
             "offset": "\(offset)",
             "q": term,
         ]
 
-        return await httpClient.request(url: .search, method: .get, parameters)
+        return await httpClient.get(GiphyURL.search.urlString, queryParameters)
     }
 }

@@ -7,30 +7,20 @@ import Foundation
 enum GiphyURL: String {
     case search = "/v1/gifs/search"
 
-    // TODO: ensure parameters are URL encoded; default to empty string otherwise
-    func buildURLComponents(_ parameters: [String: String]) -> URLComponents {
+    var urlString: String {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.giphy.com"
         urlComponents.path = self.rawValue
-        urlComponents.queryItems = defaultQueryParams(parameters)
 
-        return urlComponents
-    }
-
-    private func defaultQueryParams(_ include: [String: String]) -> [URLQueryItem] {
-        var queryItems = include
         switch self {
         case .search:
-            queryItems["api_key"] = "WbLCO29ThDnFiB4rxeihH3BSx4vsVjBk" // TODO: obfuscate this somehow...
-            queryItems["rating"] = "G"
-            queryItems["lang"] = "en"
+            urlComponents.queryItems?.append(URLQueryItem(name: "api_key", value: "WbLCO29ThDnFiB4rxeihH3BSx4vsVjBk"))
+            urlComponents.queryItems?.append(URLQueryItem(name: "rating", value: "G"))
+            urlComponents.queryItems?.append(URLQueryItem(name: "lang", value: "en"))
         }
 
-        var result = [URLQueryItem]()
-        for (key, value) in queryItems {
-            result.append(URLQueryItem(name: key, value: value))
-        }
-        return result
+        // TODO: figure out how to bubble up invalid URLs
+        return urlComponents.url?.absoluteString ?? ""
     }
 }

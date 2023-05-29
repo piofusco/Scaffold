@@ -4,15 +4,10 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-    case get = "GET"
-}
-
 protocol HTTPClient {
-    func request<T: Decodable>(
-        url: GiphyURL,
-        method: HTTPMethod,
-        _ parameters: [String: String]
+    func get<T: Decodable>(
+        _ urlString: String,
+        _ queryParameters: [String: String]
     ) async -> Result<T, Error>
 }
 
@@ -28,14 +23,29 @@ class DefaultHTTPClient: HTTPClient {
         self.decoder = decoder
     }
 
-    func request<T: Decodable>(url: GiphyURL, method: HTTPMethod, _ parameters: [String: String]) async -> Result<T, Error> {
-        let urlComponents = url.buildURLComponents(parameters)
+    func get<T: Decodable>(
+        _ urlString: String,
+        _ queryParameters: [String: String] = [:]
+    ) async -> Result<T, Error> {
+        guard let _ = URL(string: urlString),
+              var urlComponents = URLComponents(string: urlString) else {
+            return Result.failure(NetworkError.internalError)
+        }
+
+        if !queryParameters.isEmpty {
+            var queryItems = [URLQueryItem]()
+            for (key, value) in queryParameters {
+                queryItems.append(URLQueryItem(name: key, value: value))
+            }
+            urlComponents.queryItems = queryItems
+        }
+
         guard let url = urlComponents.url else {
-            return Result.failure(NetworkError.badRequest)
+            return Result.failure(NetworkError.internalError)
         }
 
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
+        urlRequest.httpMethod = "GET"
 
         var decoded: T?
         do {
@@ -46,7 +56,7 @@ class DefaultHTTPClient: HTTPClient {
             }
 
             guard !(400...499).contains(httpResponse.statusCode)
-                && !(500...599).contains(httpResponse.statusCode) else {
+                      && !(500...599).contains(httpResponse.statusCode) else {
                 return Result.failure(NetworkError.badRequest)
             }
 

@@ -27,22 +27,39 @@ final class HTTPClientTests: XCTestCase {
         )
     }
 
+    func test_get_badURL_failure() async throws {
+        var lastError: Error?
+        let result: Result<GiphySearchResultImage, Error> = await subject.get("i am not a url pls no")
+
+        switch result {
+        case .success(_): XCTFail("Should not fail")
+        case .failure(let error): lastError = error
+        }
+        XCTAssertNotNil(lastError)
+        XCTAssertTrue(mockURLSession.lastURLRequests.isEmpty)
+        XCTAssertEqual(mockJSONDecoder.decodeInvocations, 0)
+    }
+
     func test_get_200_returnsDecodable_success() async throws {
         mockURLSession.nextResults = [("".data(using: .utf16)!, url200Response)]
         mockJSONDecoder.nextDecodable = GiphySearchResultImage(url: URL(string: "www.whatever.com")!)
 
-        let result: Result<GiphySearchResultImage, Error> = await subject.request(
-            url: GiphyURL.search,
-            method: .get,
-            [:]
+        let result: Result<GiphySearchResultImage, Error> = await subject.get(
+            GiphyURL.search.urlString,
+            ["flooring": "marble"]
         )
 
         switch result {
-            case .success(let decoded): XCTAssertNotNil(decoded)
-            case .failure(_): XCTFail("Should not fail")
+        case .success(let decoded): XCTAssertNotNil(decoded)
+        case .failure(_): XCTFail("Should not fail")
         }
         let lastURLRequest = mockURLSession.lastURLRequests[0]
         XCTAssertEqual(lastURLRequest.url?.path, "/v1/gifs/search")
+        guard let query = lastURLRequest.url?.query else {
+            XCTFail("Query parameters were not added")
+            return
+        }
+        XCTAssertTrue(query.contains("flooring=marble"))
         XCTAssertEqual(lastURLRequest.httpMethod, "GET")
         XCTAssertEqual(mockJSONDecoder.decodeInvocations, 1)
     }
@@ -51,15 +68,11 @@ final class HTTPClientTests: XCTestCase {
         mockURLSession.nextResults = [(invalidJSON, url200Response)]
         var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, Error> = await subject.request(
-            url: GiphyURL.search,
-            method: .get,
-            [:]
-        )
+        let result: Result<GiphySearchResultImage, Error> = await subject.get(GiphyURL.search.urlString)
 
         switch result {
-            case .success(_): XCTFail("Should not succeed")
-            case .failure(let error): lastError = error
+        case .success(_): XCTFail("Should not succeed")
+        case .failure(let error): lastError = error
         }
         XCTAssertNotNil(lastError)
         let lastURLRequest = mockURLSession.lastURLRequests[0]
@@ -72,15 +85,11 @@ final class HTTPClientTests: XCTestCase {
         mockURLSession.nextResults = [("some data".data(using: .utf16)!, url400Response)]
         var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, Error> = await subject.request(
-            url: GiphyURL.search,
-            method: .get,
-            [:]
-        )
+        let result: Result<GiphySearchResultImage, Error> = await subject.get(GiphyURL.search.urlString)
 
         switch result {
-            case .success(_): XCTFail("Should not succeed")
-            case .failure(let error): lastError = error
+        case .success(_): XCTFail("Should not succeed")
+        case .failure(let error): lastError = error
         }
         XCTAssertNotNil(lastError)
         let lastURLRequest = mockURLSession.lastURLRequests[0]
@@ -93,15 +102,11 @@ final class HTTPClientTests: XCTestCase {
         mockURLSession.nextResults = [("some data".data(using: .utf16)!, url500Response)]
         var lastError: Error?
 
-        let result: Result<GiphySearchResultImage, Error> = await subject.request(
-            url: GiphyURL.search,
-            method: .get,
-            [:]
-        )
+        let result: Result<GiphySearchResultImage, Error> = await subject.get(GiphyURL.search.urlString)
 
         switch result {
-            case .success(_): XCTFail("Should not succeed")
-            case .failure(let error): lastError = error
+        case .success(_): XCTFail("Should not succeed")
+        case .failure(let error): lastError = error
         }
         XCTAssertNotNil(lastError)
         let lastURLRequest = mockURLSession.lastURLRequests[0]
