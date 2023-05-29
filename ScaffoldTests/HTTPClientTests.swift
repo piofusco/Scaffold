@@ -14,16 +14,19 @@ final class HTTPClientTests: XCTestCase {
 
     var mockURLSession: MockURLSession!
     var mockJSONDecoder: MockJSONDecoder<GiphySearchResultImage>!
+    var mockJSONEncoder: MockJSONEncoder<EncodableExample>!
 
     override func setUp() {
         super.setUp()
 
         mockURLSession = MockURLSession()
         mockJSONDecoder = MockJSONDecoder()
+        mockJSONEncoder = MockJSONEncoder()
 
         subject = DefaultHTTPClient(
             urlSession: mockURLSession,
-            decoder: mockJSONDecoder
+            decoder: mockJSONDecoder,
+            encoder: mockJSONEncoder
         )
     }
 

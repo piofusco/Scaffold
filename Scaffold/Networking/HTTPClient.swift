@@ -14,13 +14,16 @@ protocol HTTPClient {
 class DefaultHTTPClient: HTTPClient {
     private let urlSession: ScaffoldURLSession
     private let decoder: ScaffoldJSONDecoder
+    private let encoder: ScaffoldJSONEncoder
 
     init(
         urlSession: ScaffoldURLSession,
-        decoder: ScaffoldJSONDecoder
+        decoder: ScaffoldJSONDecoder,
+        encoder: ScaffoldJSONEncoder
     ) {
         self.urlSession = urlSession
         self.decoder = decoder
+        self.encoder = encoder
     }
 
     func get<T: Decodable>(
