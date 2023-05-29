@@ -1,7 +1,9 @@
 name: Scaffold
 options:
   bundleIdPrefix: com.piofusco
-  deploymentTarget: "16.0"
+  platform: [ iOS ]
+  deploymentTarget:
+    iOS: 16.0
 targets:
   Scaffold:
     sources:
@@ -19,3 +21,22 @@ targets:
     type: bundle.unit-test
     info:
       path: ScaffoldTests/Info.plist
+schemes:
+  Scaffold:
+    build:
+      targets:
+        Scaffold: all
+    archive:
+      config: Release
+      customArchiveName: Scaffold
+      revealArchiveInOrganizer: false
+  ScaffoldTests:
+    build:
+      targets:
+        ScaffoldTests: [test, run]
+    test:
+      targets:
+        - name: ScaffoldTests
+          parallelizable: true
+          randomExecutionOrder: true
+          skippedTests: []
