@@ -12,6 +12,11 @@ targets:
     type: application
     info:
       path: Scaffold/Info.plist
+    settings:
+      base:
+        SUPPORTS_MACCATALYST: false
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: false
+        TARGETED_DEVICE_FAMILY: 1
   ScaffoldTests:
     sources:
       - ScaffoldTests/
@@ -21,6 +26,11 @@ targets:
     type: bundle.unit-test
     info:
       path: ScaffoldTests/Info.plist
+    settings:
+      base:
+        SUPPORTS_MACCATALYST: false
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: false
+        TARGETED_DEVICE_FAMILY: 1
 schemes:
   Scaffold:
     build:

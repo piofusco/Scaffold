@@ -2,6 +2,8 @@
 build/
 !taskcluster/ci/build
 .build/
+TestResults/
+*.xcresult
 *.pbxuser
 !default.pbxuser
 *.mode1v3

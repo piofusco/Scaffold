@@ -17,7 +17,7 @@ jobs:
         run: xcodegen generate
       - name: Run Unit Tests
         run: |
-          xcodebuild -scheme ScaffoldTests -resultBundlePath TestResults test
+          xcodebuild -scheme ScaffoldTests -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation),OS=16.1' -resultBundlePath TestResults clean test
       - uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
