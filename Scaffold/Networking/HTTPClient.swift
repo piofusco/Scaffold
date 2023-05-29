@@ -13,6 +13,7 @@ protocol HTTPClient {
     func post<T: Decodable>(
         _ urlString: String,
         _ queryParameters: [String: String],
+        _ headers: [String: String],
         _ body: Encodable?
     ) async -> Result<T, Error>
 }
@@ -88,6 +89,7 @@ class DefaultHTTPClient: HTTPClient {
     func post<T: Decodable>(
         _ urlString: String,
         _ queryParameters: [String: String] = [:],
+        _ headers: [String: String] = [:],
         _ body: Encodable? = nil
     ) async -> Result<T, Error> {
         guard let _ = URL(string: urlString),
@@ -118,6 +120,7 @@ class DefaultHTTPClient: HTTPClient {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = data
+        urlRequest.allHTTPHeaderFields = headers
         var decoded: T?
         do {
             let (data, response) = try await urlSession.data(for: urlRequest)

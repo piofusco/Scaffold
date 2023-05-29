@@ -152,6 +152,7 @@ final class HTTPClientTests: XCTestCase {
         let result: Result<GiphySearchResultImage, Error> = await subject.post(
             "i am not a url pls no",
             [:],
+            [:],
             nil
         )
 
@@ -170,6 +171,7 @@ final class HTTPClientTests: XCTestCase {
 
         let result: Result<GiphySearchResultImage, Error> = await subject.post(
             GiphyURL.search.urlString,
+            [:],
             [:],
             EncodableExample(name: "billy bob")
         )
@@ -190,6 +192,7 @@ final class HTTPClientTests: XCTestCase {
 
         let result: Result<GiphySearchResultImage, Error> = await subject.post(
             GiphyURL.search.urlString,
+            [:],
             [:],
             EncodableExample(name: "billy bob")
         )
@@ -217,6 +220,7 @@ final class HTTPClientTests: XCTestCase {
         let result: Result<GiphySearchResultImage, Error> = await subject.post(
             GiphyURL.search.urlString,
             [:],
+            [:],
             EncodableExample(name: "billy bob")
         )
 
@@ -243,6 +247,7 @@ final class HTTPClientTests: XCTestCase {
         let result: Result<GiphySearchResultImage, Error> = await subject.post(
             GiphyURL.search.urlString,
             ["flooring":"marble"],
+            ["header1":"value1"],
             EncodableExample(name: "billy bob")
         )
 
@@ -260,6 +265,11 @@ final class HTTPClientTests: XCTestCase {
         XCTAssertTrue(query.contains("flooring=marble"))
         XCTAssertEqual(lastURLRequest.httpMethod, "POST")
         XCTAssertEqual(lastURLRequest.httpBody, validJSON)
+        guard let headers = lastURLRequest.allHTTPHeaderFields else {
+            XCTFail("Headers were not added")
+            return
+        }
+        XCTAssertEqual(headers["header1"], "value1")
         XCTAssertEqual(mockJSONDecoder.decodeInvocations, 1)
     }
 }
